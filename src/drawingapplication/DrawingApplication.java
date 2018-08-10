@@ -41,5 +41,8 @@ public class DrawingApplication {
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         application.setSize(500, 300);
         application.setVisible(true);
+        
+        
+        
     }
 }
