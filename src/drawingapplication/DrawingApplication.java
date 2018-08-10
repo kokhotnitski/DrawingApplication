@@ -31,17 +31,20 @@ public class DrawingApplication {
     
     public DrawingApplication()
     {
-        JFrame application = new JFrame("Paint Program");
-        MouseDrawer mouseDrawer = new MouseDrawer();
-        application.add(mouseDrawer, BorderLayout.CENTER);
+//        JFrame application = new JFrame("Paint Program");
+//        
+//        MouseDrawer mouseDrawer = new MouseDrawer();
+//        application.add(mouseDrawer, BorderLayout.CENTER);
+//        
+//        JLabel statusTab = mouseDrawer.getStatusTab();
+//        application.add(statusTab, BorderLayout.SOUTH);
+//        
+//        application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        application.setSize(500, 300);
+//        application.setVisible(true);
         
-        JLabel statusTab = mouseDrawer.getStatusTab();
-        application.add(statusTab, BorderLayout.SOUTH);
-        
-        application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        application.setSize(500, 300);
-        application.setVisible(true);
-        
+        InitComponents components = new InitComponents();
+        components.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         
     }
