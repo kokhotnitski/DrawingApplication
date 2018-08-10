@@ -7,6 +7,9 @@ package drawingapplication;
 
 import java.awt.Container;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -27,22 +30,21 @@ public class InitComponents extends JFrame {
     
     public InitComponents(){
         
-        createPanel();
+        //createPanel();
     }
     
-    private void createPanel(){
+    public Container createPanel(){
         
         Container contentPane = getContentPane();
-        
         contentPane.setLayout(null);
-        
+                       
         Panel = new JPanel();
         Panel.setBounds(0, 0, 400, 40);
         Panel.setLayout(null);
         contentPane.add(Panel);
         
         painterPaintJPanel = new PaintPanel();
-        painterPaintJPanel.setBounds(0, 40, 400, 340);
+        painterPaintJPanel.setBounds(0, 40, 800, 800);
         painterPaintJPanel.setBackground( Color.WHITE);
         contentPane.add(painterPaintJPanel);
         
@@ -85,10 +87,7 @@ public class InitComponents extends JFrame {
         
         );
         
-        setTitle("");
-        setSize(408, 407);
-        setVisible(true);
-        
+        return contentPane;
         
     }
             

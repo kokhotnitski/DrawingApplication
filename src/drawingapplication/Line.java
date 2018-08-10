@@ -27,5 +27,10 @@ public class Line extends Shape {
         g.drawLine(getX1(), getY1(), getX2(), getY2());
         
     }
+
+    @Override
+    public void fill(Graphics g) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -67,4 +67,7 @@ public abstract class Shape implements shapeInterface {
     
     @Override
     public abstract void draw(Graphics g);
+    
+    @Override
+    public abstract void fill(Graphics g);
 }

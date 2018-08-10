@@ -23,7 +23,7 @@ public class PaintPanel extends JPanel {
     private ArrayList shapesList = new ArrayList();
     private Shape shape;
     private String type = "Line";
-    private Color color = new Color(204, 204, 204);
+    private Color color;
 
     public PaintPanel() {
 
