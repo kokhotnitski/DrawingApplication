@@ -72,7 +72,8 @@ public class DrawingApplication {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
                 MouseDrawer mouseDrawer = new MouseDrawer();
-                application.add(mouseDrawer, BorderLayout.CENTER);
+                //application.add(mouseDrawer, BorderLayout.CENTER);
+                application.setContentPane(mouseDrawer);
 
                 JLabel statusTab = mouseDrawer.getStatusTab();
                 application.add(statusTab, BorderLayout.SOUTH);
