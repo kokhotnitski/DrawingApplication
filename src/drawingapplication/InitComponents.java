@@ -33,18 +33,19 @@ public class InitComponents extends JFrame {
         //createPanel();
     }
     
-    public Container createPanel(){
+    public Container createPanel(Dimension frameSize){
         
         Container contentPane = getContentPane();
         contentPane.setLayout(null);
+        
                        
         Panel = new JPanel();
-        Panel.setBounds(0, 0, 400, 40);
+        Panel.setBounds(0, 0, frameSize.width, 40);
         Panel.setLayout(null);
         contentPane.add(Panel);
         
         painterPaintJPanel = new PaintPanel();
-        painterPaintJPanel.setBounds(0, 40, 800, 800);
+        painterPaintJPanel.setBounds(0, 0, frameSize.width, frameSize.height);
         painterPaintJPanel.setBackground( Color.WHITE);
         contentPane.add(painterPaintJPanel);
         

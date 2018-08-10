@@ -26,11 +26,14 @@ public class MouseDrawer extends JPanel {
     private final ArrayList<Point> points = new ArrayList();
     
     public MouseDrawer() {
+        
         setBackground(Color.WHITE);
         MouseHandler handler = new MouseHandler();
         addMouseListener(handler);
         addMouseMotionListener(handler);
         statusTab = new JLabel("Mouse outside of the canvas.");
+        
+        
     }
     
     public JLabel getStatusTab() {

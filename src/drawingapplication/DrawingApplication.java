@@ -6,6 +6,9 @@
 package drawingapplication;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowStateListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
@@ -40,8 +43,9 @@ public class DrawingApplication {
         fileMenu = new javax.swing.JMenu();
         drawingMenuItem = new javax.swing.JMenuItem();
         freeDraeingMenuItem = new javax.swing.JMenuItem();
-
+        
         JFrame application = new JFrame("Paint Program");
+        Dimension frameSize = application.getSize();
 
         fileMenu.setMnemonic('F');
         fileMenu.setText("File");
@@ -52,8 +56,9 @@ public class DrawingApplication {
         drawingMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
+                
                 InitComponents components = new InitComponents();
-                application.setContentPane(components.createPanel());
+                application.setContentPane(components.createPanel(application.getSize()));
                 application.revalidate();
                 application.repaint();
 
@@ -84,12 +89,13 @@ public class DrawingApplication {
 
         application.setJMenuBar(mainMenu);
 
-//        JFrame application = new JFrame("Paint Program");
-//        application.addWindowStateListener(new WindowStateListener() {
-//            public void windowStateChanged(WindowEvent arg0) {
-//                frame__windowStateChanged(arg0);
-//            }
-//        });
+        application.addWindowStateListener(new WindowStateListener() {
+            
+            @Override
+            public void windowStateChanged(WindowEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
         
 
 //        JFrame application = new JFrame("Paint Program");
@@ -100,7 +106,6 @@ public class DrawingApplication {
 //        application.add(statusTab, BorderLayout.SOUTH);
         
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //application.setSize(500, 300);
         application.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         application.setVisible(true);
 
