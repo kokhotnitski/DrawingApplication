@@ -21,6 +21,7 @@ public class InitComponents extends JFrame {
     private JPanel Panel;
     private JComboBox  shapJComboBox;
     private JButton colorJButton;
+    private JButton fillColorJButton;
     private PaintPanel painterPaintJPanel;
     
     private String[] shapeTypes = {"Line", "Rectangle", "Oval"};
@@ -79,6 +80,24 @@ public class InitComponents extends JFrame {
                     colorJButton.setBackground(selection);
                     
                     painterPaintJPanel.setShapeColor(selection);
+                    
+                }
+
+            }
+        
+        );
+        
+        fillColorJButton = new JButton();
+        fillColorJButton.setBounds(300, 2, 80, 24);
+        fillColorJButton.setText("Fill Color");
+        Panel.add(fillColorJButton);
+        
+        fillColorJButton.addActionListener(
+                
+            new ActionListener(){
+
+                public void actionPerformed(ActionEvent e) {
+                    
                     
                 }
 
