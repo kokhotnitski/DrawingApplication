@@ -60,8 +60,7 @@ public class DrawingApplication {
                 InitComponents components = new InitComponents();
                 application.setContentPane(components.createPanel(application.getSize()));
                 application.revalidate();
-                application.repaint();
-
+                
             }
         });
         fileMenu.add(drawingMenuItem);
@@ -78,9 +77,7 @@ public class DrawingApplication {
                 JLabel statusTab = mouseDrawer.getStatusTab();
                 application.add(statusTab, BorderLayout.SOUTH);
                 application.revalidate();
-                application.repaint();
                 
-
             }
         });
         

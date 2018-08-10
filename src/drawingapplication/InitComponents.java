@@ -45,7 +45,7 @@ public class InitComponents extends JFrame {
         contentPane.add(Panel);
         
         painterPaintJPanel = new PaintPanel();
-        painterPaintJPanel.setBounds(0, 0, frameSize.width, frameSize.height);
+        painterPaintJPanel.setBounds(0, 40, frameSize.width, frameSize.height);
         painterPaintJPanel.setBackground( Color.WHITE);
         contentPane.add(painterPaintJPanel);
         
