@@ -28,8 +28,7 @@ public class Oval extends Shape{
         
         g.setColor(getColor());
         g.drawOval(upperLeftX, upperLeftY, width, height);
-        //g.fillOval(upperLeftX, upperLeftY, width, height);
-        
+               
         
     }
 

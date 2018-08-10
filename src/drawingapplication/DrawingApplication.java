@@ -7,8 +7,6 @@ package drawingapplication;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowStateListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
@@ -19,10 +17,10 @@ import javax.swing.SwingUtilities;
  */
 public class DrawingApplication {
 
-    private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenuBar mainMenu;
-    private javax.swing.JMenuItem drawingMenuItem;
-    private javax.swing.JMenuItem freeDraeingMenuItem;
+    private final javax.swing.JMenu fileMenu;
+    private final javax.swing.JMenuBar mainMenu;
+    private final javax.swing.JMenuItem drawingMenuItem;
+    private final javax.swing.JMenuItem freeDraeingMenuItem;
 
     /**
      * @param args the command line arguments
@@ -43,7 +41,7 @@ public class DrawingApplication {
         fileMenu = new javax.swing.JMenu();
         drawingMenuItem = new javax.swing.JMenuItem();
         freeDraeingMenuItem = new javax.swing.JMenuItem();
-        
+
         JFrame application = new JFrame("Paint Program");
         Dimension frameSize = application.getSize();
 
@@ -56,11 +54,10 @@ public class DrawingApplication {
         drawingMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-                
                 InitComponents components = new InitComponents();
                 application.setContentPane(components.createPanel(application.getSize()));
                 application.revalidate();
-                
+
             }
         });
         fileMenu.add(drawingMenuItem);
@@ -78,50 +75,19 @@ public class DrawingApplication {
                 JLabel statusTab = mouseDrawer.getStatusTab();
                 application.add(statusTab, BorderLayout.SOUTH);
                 application.revalidate();
-                
+
             }
         });
-        
+
         fileMenu.add(freeDraeingMenuItem);
         mainMenu.add(fileMenu);
 
         application.setJMenuBar(mainMenu);
 
-        application.addWindowStateListener(new WindowStateListener() {
-            
-            @Override
-            public void windowStateChanged(WindowEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
-        
-
-//        JFrame application = new JFrame("Paint Program");
-//        MouseDrawer mouseDrawer = new MouseDrawer();
-//        application.add(mouseDrawer, BorderLayout.CENTER);
-//
-//        JLabel statusTab = mouseDrawer.getStatusTab();
-//        application.add(statusTab, BorderLayout.SOUTH);
-        
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        application.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        application.setExtendedState(JFrame.MAXIMIZED_BOTH);
         application.setVisible(true);
 
-}
+    }
 
-//    public void frame__windowStateChanged(WindowEvent e) {
-//        // minimized
-//        if ((e.getNewState() & Frame.ICONIFIED) == Frame.ICONIFIED) {
-//            
-//            //_print("minimized");
-//            String test = "";
-//            
-//            
-//        } // maximized
-//        else if ((e.getNewState() & Frame.MAXIMIZED_BOTH) == Frame.MAXIMIZED_BOTH) {
-//            
-//            //_print("maximized");
-//            String test = "";
-//        }
-//    }
 }
