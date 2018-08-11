@@ -5,6 +5,7 @@
  */
 package drawingapplication;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -22,10 +23,13 @@ public class InitComponents extends JFrame {
     private JComboBox  shapJComboBox;
     private JButton colorJButton;
     private JButton fillColorJButton;
+    private JButton undoJButton;
+    private JButton redoJButton;
     private PaintPanel painterPaintJPanel;
+    private JLabel statusTabJLabel;
     
     private String[] shapeTypes = {"Line", "Rectangle", "Oval"};
-    
+    private final int PANELSTATUSBORDER = 120;
     
     public InitComponents(){
         
@@ -44,9 +48,15 @@ public class InitComponents extends JFrame {
         contentPane.add(Panel);
         
         painterPaintJPanel = new PaintPanel();
-        painterPaintJPanel.setBounds(0, 40, frameSize.width, frameSize.height);
-        painterPaintJPanel.setBackground( Color.WHITE);
+        painterPaintJPanel.setBounds(0, 40, frameSize.width, 
+                (frameSize.height - PANELSTATUSBORDER));
+        painterPaintJPanel.setBackground(Color.WHITE);
         contentPane.add(painterPaintJPanel);
+        
+        statusTabJLabel = painterPaintJPanel.getStatusTab();
+        statusTabJLabel.setBounds(0 ,(frameSize.height - PANELSTATUSBORDER), 
+                frameSize.width, 100);
+        contentPane.add(statusTabJLabel);
         
         shapJComboBox = new JComboBox(shapeTypes);
         shapJComboBox.setBounds(90, 2, 100, 24);
@@ -66,7 +76,7 @@ public class InitComponents extends JFrame {
         );
         
         colorJButton = new JButton();
-        colorJButton.setBounds(200, 2, 80, 24);
+        colorJButton.setBounds(200, 2, 110, 24);
         colorJButton.setText("Choose Color");
         Panel.add(colorJButton);
         
@@ -88,7 +98,7 @@ public class InitComponents extends JFrame {
         );
         
         fillColorJButton = new JButton();
-        fillColorJButton.setBounds(300, 2, 80, 24);
+        fillColorJButton.setBounds(330, 2, 100, 24);
         fillColorJButton.setText("Fill Color");
         Panel.add(fillColorJButton);
         
@@ -99,6 +109,40 @@ public class InitComponents extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     
                     
+                }
+
+            }
+        
+        );
+        
+        undoJButton = new JButton();
+        undoJButton.setBounds(440, 2, 70, 24);
+        undoJButton.setText("Undo");
+        Panel.add(undoJButton);
+        
+        undoJButton.addActionListener(
+                
+            new ActionListener(){
+
+                public void actionPerformed(ActionEvent e) {
+                    painterPaintJPanel.undoShape();
+                }
+
+            }
+        
+        );
+        
+        redoJButton = new JButton();
+        redoJButton.setBounds(510, 2, 70, 24);
+        redoJButton.setText("Redo");
+        Panel.add(redoJButton);
+        
+        redoJButton.addActionListener(
+                
+            new ActionListener(){
+
+                public void actionPerformed(ActionEvent e) {
+                    painterPaintJPanel.redoShape();
                 }
 
             }
