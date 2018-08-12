@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -20,16 +21,19 @@ import javax.swing.JPanel;
  */
 public class PaintPanel extends JPanel {
 
-    private ArrayList shapesList = new ArrayList();
+    private final ArrayList shapesList = new ArrayList();
+    private final ArrayList undoShapesList = new ArrayList();
     private Shape shape;
     private String type = "Line";
     private Color color;
-
+    private final JLabel statusTab;
+    
     public PaintPanel() {
 
         MouseHandler moushandler = new MouseHandler();
         addMouseListener(moushandler);
         addMouseMotionListener(moushandler);
+        statusTab = new JLabel("0, 0");
     }
 
     private class MouseHandler implements MouseListener, MouseMotionListener {
@@ -41,6 +45,7 @@ public class PaintPanel extends JPanel {
 
         @Override
         public void mouseDragged(MouseEvent e) {
+            statusTab.setText(String.format("%d, %d", e.getX(), e.getY()));
             panelMouseDragged(e);
         }
 
@@ -62,8 +67,13 @@ public class PaintPanel extends JPanel {
 
         @Override
         public void mouseMoved(MouseEvent e) {
+            statusTab.setText(String.format("%d, %d", e.getX(), e.getY()));
         }
 
+    }
+    
+    public JLabel getStatusTab() {
+        return statusTab;
     }
     
     public void setShapeType(String shapeType) {
@@ -75,7 +85,25 @@ public class PaintPanel extends JPanel {
         color = shapeColor;
 
     }
-
+    
+    public void redoShape() {
+        if(undoShapesList.size() > 0){
+            int lastShape = (undoShapesList.size() - 1);
+            shapesList.add(undoShapesList.get(lastShape));
+            undoShapesList.remove((lastShape));
+            repaint();
+        }      
+    }
+    
+    public void undoShape() {
+        if(shapesList.size() > 0){
+            int lastShape = (shapesList.size() - 1);
+            undoShapesList.add(shapesList.get(lastShape));
+            shapesList.remove((lastShape));
+            repaint();
+        }      
+    }
+    
     public void panelMousedPressed(MouseEvent e) {
 
         if (type.equals("Line")) {
@@ -91,11 +119,12 @@ public class PaintPanel extends JPanel {
         }
 
         shapesList.add(shape);
-
+        if(!undoShapesList.isEmpty()){
+            undoShapesList.clear();
+        }
     }
 
-    
-
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -106,7 +135,6 @@ public class PaintPanel extends JPanel {
             nextShape = (Shape) shapeIterator.next();
             nextShape.draw(g);
         }
-
     }
 
     public void panelMouseDragged(MouseEvent e) {
