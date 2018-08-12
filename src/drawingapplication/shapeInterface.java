@@ -17,4 +17,5 @@ public interface shapeInterface {
     public Color getColor();
     public abstract void draw(Graphics g);
     public abstract void fill(Graphics g);
+    public boolean containsPoint(int x, int y);
 }

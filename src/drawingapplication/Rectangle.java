@@ -44,6 +44,7 @@ public class Rectangle extends Shape {
         
         g.setColor(getFillColor());
         g.fillRect(upperLeftX, upperLeftY, width, height);
+        
     }
     
 }

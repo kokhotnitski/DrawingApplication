@@ -66,7 +66,8 @@ public abstract class Shape implements shapeInterface {
         return y2;
     }
     
-    boolean containsPoint(int x, int y) {
+    @Override
+    public boolean containsPoint(int x, int y) {
         
         if (x >= x1 && x < x1+x2 && y >= y1 && y < y1+y2)
             return true;

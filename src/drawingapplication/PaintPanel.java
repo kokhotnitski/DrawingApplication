@@ -30,6 +30,7 @@ public class PaintPanel extends JPanel {
     private final JLabel statusTab;
     private Shape selectedShape;
     
+    private boolean isSelectd = false;
     
     public PaintPanel() {
 
@@ -62,8 +63,10 @@ public class PaintPanel extends JPanel {
                 
                 if (s.containsPoint(e.getX(),e.getY())) {
                     selectedShape = s;
+                    isSelectd = true;
                     return;
                 }
+                
             }
             
         }
@@ -110,6 +113,8 @@ public class PaintPanel extends JPanel {
 
         selectedShape.setFillColor(fillColor);
         selectedShape.fill(g);
+        repaint();
+        
         
     }
     
@@ -138,6 +143,7 @@ public class PaintPanel extends JPanel {
         }
         
         if (type.equals("Rectangle")) {
+            fillColor = new Color(255, 0, 0, 64);
             shape = new Rectangle(e.getX(), e.getY(), e.getX(), e.getY(), color, fillColor);
         }
         
@@ -155,13 +161,17 @@ public class PaintPanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        
         Shape nextShape;
         Iterator shapeIterator = shapesList.iterator();
 
         while (shapeIterator.hasNext()) {
             nextShape = (Shape) shapeIterator.next();
             nextShape.draw(g);
+            if(isSelectd == true){
+                nextShape.fill(g);
+            }
+            
 
         }
     }

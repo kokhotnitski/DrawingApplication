@@ -108,13 +108,13 @@ public class InitComponents extends JFrame {
 
                 public void actionPerformed(ActionEvent e) {
                     
-                    Color selection = JColorChooser.showDialog(null, "select Color", Color.black);
+                    Color selection = JColorChooser.showDialog(null, "select Color", Color.WHITE);
                     fillColorJButton.setBackground(selection);
                     
                     painterPaintJPanel.setShapeFillColor(selection);
                     Graphics graphics = painterPaintJPanel.getGraphics();
                     painterPaintJPanel.fillColor(graphics);
-                    
+                        
                 }
 
             }
