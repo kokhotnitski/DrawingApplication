@@ -27,9 +27,11 @@ public class InitComponents extends JFrame {
     private JButton redoJButton;
     private PaintPanel painterPaintJPanel;
     private JLabel statusTabJLabel;
+    private JButton eraserJButton;
     
     private String[] shapeTypes = {"Line", "Rectangle", "Oval"};
-    private final int PANELSTATUSBORDER = 120;
+    private final int PANELSTATUSBORDER = 40;
+    private int eraserIndex = 0;
     
     public InitComponents(){
         
@@ -48,14 +50,14 @@ public class InitComponents extends JFrame {
         contentPane.add(Panel);
         
         painterPaintJPanel = new PaintPanel();
-        painterPaintJPanel.setBounds(0, 40, frameSize.width, 
+        painterPaintJPanel.setBounds(0, 55, frameSize.width, 
                 (frameSize.height - PANELSTATUSBORDER));
         painterPaintJPanel.setBackground(Color.WHITE);
         contentPane.add(painterPaintJPanel);
         
         statusTabJLabel = painterPaintJPanel.getStatusTab();
-        statusTabJLabel.setBounds(0 ,(frameSize.height - PANELSTATUSBORDER), 
-                frameSize.width, 100);
+        statusTabJLabel.setBounds(0 , 40, 
+                frameSize.width, 15);
         contentPane.add(statusTabJLabel);
         
         shapJComboBox = new JComboBox(shapeTypes);
@@ -153,6 +155,22 @@ public class InitComponents extends JFrame {
                     painterPaintJPanel.redoShape();
                 }
 
+            }
+        
+        );
+         
+        eraserJButton = new JButton();
+        eraserJButton.setBounds(580, 2, 70, 24);
+        eraserJButton.setText("Erase");
+        Panel.add(eraserJButton);
+        
+        eraserJButton.addActionListener(
+                
+            new ActionListener(){
+
+                public void actionPerformed(ActionEvent e) {
+                    painterPaintJPanel.eraseShape();
+                }
             }
         
         );
