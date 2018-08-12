@@ -26,7 +26,10 @@ public class PaintPanel extends JPanel {
     private Shape shape;
     private String type = "Line";
     private Color color;
+    private Color fillColor;
     private final JLabel statusTab;
+    private Shape selectedShape;
+    
     
     public PaintPanel() {
 
@@ -51,6 +54,18 @@ public class PaintPanel extends JPanel {
 
         @Override
         public void mouseClicked(MouseEvent e) {
+            
+            shapesList.remove(shapesList.size() - 1);
+            for ( int i = shapesList.size() - 1; i >= 0; i-- ) 
+            { 
+                Shape s = (Shape) shapesList.get(i);
+                
+                if (s.containsPoint(e.getX(),e.getY())) {
+                    selectedShape = s;
+                    return;
+                }
+            }
+            
         }
 
         @Override
@@ -86,6 +101,18 @@ public class PaintPanel extends JPanel {
 
     }
     
+    public void setShapeFillColor(Color shapeFillColor) {
+        fillColor = shapeFillColor;
+
+    }
+    
+    public void fillColor(Graphics g){
+
+        selectedShape.setFillColor(fillColor);
+        selectedShape.fill(g);
+        
+    }
+    
     public void redoShape() {
         if(undoShapesList.size() > 0){
             int lastShape = (undoShapesList.size() - 1);
@@ -111,17 +138,18 @@ public class PaintPanel extends JPanel {
         }
         
         if (type.equals("Rectangle")) {
-            shape = new Rectangle(e.getX(), e.getY(), e.getX(), e.getY(), color);
+            shape = new Rectangle(e.getX(), e.getY(), e.getX(), e.getY(), color, fillColor);
         }
         
         if (type.equals("Oval")) {
-            shape = new Oval(e.getX(), e.getY(), e.getX(), e.getY(), color);
+            shape = new Oval(e.getX(), e.getY(), e.getX(), e.getY(), color, fillColor);
         }
-
+            
         shapesList.add(shape);
         if(!undoShapesList.isEmpty()){
             undoShapesList.clear();
         }
+        
     }
 
     @Override
@@ -134,8 +162,11 @@ public class PaintPanel extends JPanel {
         while (shapeIterator.hasNext()) {
             nextShape = (Shape) shapeIterator.next();
             nextShape.draw(g);
+
         }
     }
+    
+    
 
     public void panelMouseDragged(MouseEvent e) {
         shape.setX2(e.getX());

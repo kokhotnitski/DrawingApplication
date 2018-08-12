@@ -19,6 +19,7 @@ public abstract class Shape implements shapeInterface {
     private int x2;
     private int y2;
     private Color color;
+    private Color fillColor;
     
     public Shape(int x1, int y1, int x2, int y2, Color color){
         
@@ -27,6 +28,16 @@ public abstract class Shape implements shapeInterface {
         setX2(x2);
         setY2(y2);
         setColor(color);
+    }
+    
+    public Shape(int x1, int y1, int x2, int y2, Color color, Color fillColor){
+        
+        setX1(x1);
+        setY1(y1);
+        setX2(x2);
+        setY2(y2);
+        setColor(color);
+        setFillColor(fillColor);
     }
     
     public void setX1(int x){
@@ -55,14 +66,31 @@ public abstract class Shape implements shapeInterface {
         return y2;
     }
     
+    boolean containsPoint(int x, int y) {
+        
+        if (x >= x1 && x < x1+x2 && y >= y1 && y < y1+y2)
+            return true;
+        else
+            return false;
+    }
+
+    
     @Override
     public void setColor(Color c){
         color = c;
     }
     
+    public void setFillColor(Color c){
+        fillColor = c;
+    }
+    
     @Override
     public Color getColor(){
         return color;
+    }
+    
+    public Color getFillColor(){
+        return fillColor;
     }
     
     @Override

@@ -14,8 +14,8 @@ import java.awt.Graphics;
  */
 public class Oval extends Shape{
     
-    public Oval(int x1, int y1, int x2, int y2, Color color){
-        super (x1, y1, x2, y2, color);
+    public Oval(int x1, int y1, int x2, int y2, Color color, Color fillColor){
+        super (x1, y1, x2, y2, color, fillColor);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Oval extends Shape{
         int width = Math.abs(getX1() - getX2());
         int height = Math.abs(getY1() - getY2());
         
-        g.setColor(getColor());
+        g.setColor(getFillColor());
         g.fillOval(upperLeftX, upperLeftY, width, height);
     }
     

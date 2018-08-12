@@ -5,10 +5,10 @@
  */
 package drawingapplication;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -108,6 +108,12 @@ public class InitComponents extends JFrame {
 
                 public void actionPerformed(ActionEvent e) {
                     
+                    Color selection = JColorChooser.showDialog(null, "select Color", Color.black);
+                    fillColorJButton.setBackground(selection);
+                    
+                    painterPaintJPanel.setShapeFillColor(selection);
+                    Graphics graphics = painterPaintJPanel.getGraphics();
+                    painterPaintJPanel.fillColor(graphics);
                     
                 }
 

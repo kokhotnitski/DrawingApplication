@@ -14,8 +14,10 @@ import java.awt.Graphics;
  */
 public class Rectangle extends Shape {
     
-    public Rectangle(int x1, int y1, int x2, int y2, Color color){
-        super (x1, y1, x2, y2, color);
+    Graphics gr;
+    
+    public Rectangle(int x1, int y1, int x2, int y2, Color color, Color fillColor){
+        super (x1, y1, x2, y2, color, fillColor);
         
     }
 
@@ -40,7 +42,7 @@ public class Rectangle extends Shape {
         int width = Math.abs(getX1() - getX2());
         int height = Math.abs(getY1() - getY2());
         
-        g.setColor(getColor());
+        g.setColor(getFillColor());
         g.fillRect(upperLeftX, upperLeftY, width, height);
     }
     
