@@ -114,6 +114,8 @@ public class InitComponents extends JFrame {
                     painterPaintJPanel.setShapeFillColor(selection);
                     Graphics graphics = painterPaintJPanel.getGraphics();
                     painterPaintJPanel.fillColor(graphics);
+                    painterPaintJPanel.update(graphics);
+                    //painterPaintJPanel.isSelectd = false;
                         
                 }
 

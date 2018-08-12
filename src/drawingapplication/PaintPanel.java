@@ -30,7 +30,7 @@ public class PaintPanel extends JPanel {
     private final JLabel statusTab;
     private Shape selectedShape;
     
-    private boolean isSelectd = false;
+    public boolean isSelectd = false;
     
     public PaintPanel() {
 
@@ -115,7 +115,6 @@ public class PaintPanel extends JPanel {
         selectedShape.fill(g);
         repaint();
         
-        
     }
     
     public void redoShape() {
@@ -143,7 +142,6 @@ public class PaintPanel extends JPanel {
         }
         
         if (type.equals("Rectangle")) {
-            fillColor = new Color(255, 0, 0, 64);
             shape = new Rectangle(e.getX(), e.getY(), e.getX(), e.getY(), color, fillColor);
         }
         
@@ -168,11 +166,12 @@ public class PaintPanel extends JPanel {
         while (shapeIterator.hasNext()) {
             nextShape = (Shape) shapeIterator.next();
             nextShape.draw(g);
+            
+            
             if(isSelectd == true){
                 nextShape.fill(g);
             }
             
-
         }
     }
     
