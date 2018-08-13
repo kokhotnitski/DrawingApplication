@@ -23,6 +23,9 @@ public class PaintPanel extends JPanel {
 
     private final ArrayList shapesList = new ArrayList();
     private final ArrayList undoShapesList = new ArrayList();
+    private final ArrayList eraseShapesList = new ArrayList();
+    private final ArrayList changes = new ArrayList();
+    private final ArrayList undoChanges = new ArrayList();
     private Shape shape;
     private String type = "Line";
     private Color color;
@@ -31,6 +34,7 @@ public class PaintPanel extends JPanel {
     private Shape selectedShape;
     
     public boolean isSelectd = false;
+    private int undoCounter = 0;
     
     public PaintPanel() {
 
@@ -51,12 +55,14 @@ public class PaintPanel extends JPanel {
         public void mouseDragged(MouseEvent e) {
             statusTab.setText(String.format("%d, %d", e.getX(), e.getY()));
             panelMouseDragged(e);
+            undoCounter = 0;
         }
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            
             shapesList.remove(shapesList.size() - 1);
+            changes.remove(changes.lastIndexOf("add"));
+            changesList();
             for ( int i = shapesList.size() - 1; i >= 0; i-- ) 
             { 
                 Shape s = (Shape) shapesList.get(i);
@@ -64,6 +70,7 @@ public class PaintPanel extends JPanel {
                 if (s.containsPoint(e.getX(),e.getY())) {
                     selectedShape = s;
                     isSelectd = true;
+                    System.out.println("Selected: " + selectedShape.toString());
                     return;
                 }
                 
@@ -117,20 +124,66 @@ public class PaintPanel extends JPanel {
         
     }
     
-    public void redoShape() {
-        if(undoShapesList.size() > 0){
-            int lastShape = (undoShapesList.size() - 1);
-            shapesList.add(undoShapesList.get(lastShape));
-            undoShapesList.remove((lastShape));
+    public void eraseShape() {
+        if(isSelectd){
+            eraseShapesList.add(selectedShape);
+            shapesList.remove(selectedShape);
+            shapeList();
+            changes.add("erase");
+            changesList();
+            isSelectd = false;
+            undoCounter = 0;
             repaint();
-        }      
+        }
+    }
+    
+    public void redoShape() {
+        if(undoChanges.size() > 0 && undoCounter > 0){
+            undoCounter--;
+            int lastChange = (undoChanges.size() - 1);
+            int lastShape = (undoShapesList.size() - 1);
+            switch((String)undoChanges.get(lastChange)){
+                case "add":
+                    shapesList.add(undoShapesList.get(lastShape));
+                    undoShapesList.remove(lastShape);
+                    changes.add("add");
+                    undoChanges.remove(lastChange);
+                    break;
+                case "erase":
+                    eraseShapesList.add(undoShapesList.get(lastShape));
+                    shapesList.remove(shapesList.get((shapesList.size()-1)));
+                    undoShapesList.remove(lastShape);
+                    changes.add("erase");
+                    undoChanges.remove(lastChange);
+                    break;
+            }
+            changesList();
+            repaint();
+        }            
     }
     
     public void undoShape() {
-        if(shapesList.size() > 0){
-            int lastShape = (shapesList.size() - 1);
-            undoShapesList.add(shapesList.get(lastShape));
-            shapesList.remove((lastShape));
+        if(changes.size() > 0){
+            undoCounter++;
+            int lastChange = (changes.size() - 1);
+            switch((String)changes.get(lastChange)){
+                case "add":
+                    int lastShape = (shapesList.size() - 1);
+                    undoShapesList.add(shapesList.get(lastShape));
+                    shapesList.remove(lastShape);
+                    undoChanges.add("add");
+                    changes.remove(lastChange);
+                    break;
+                case "erase":
+                    int lastErase = (eraseShapesList.size() - 1);
+                    undoShapesList.add(eraseShapesList.get(lastErase));
+                    shapesList.add(eraseShapesList.get(lastErase));
+                    eraseShapesList.remove(lastErase);
+                    undoChanges.add("erase");
+                    changes.remove(lastChange);
+                    break;
+            }
+            changesList();
             repaint();
         }      
     }
@@ -150,10 +203,9 @@ public class PaintPanel extends JPanel {
         }
             
         shapesList.add(shape);
-        if(!undoShapesList.isEmpty()){
-            undoShapesList.clear();
-        }
-        
+        shapeList();
+        changes.add("add");
+        changesList();
     }
 
     @Override
@@ -175,12 +227,23 @@ public class PaintPanel extends JPanel {
         }
     }
     
-    
-
     public void panelMouseDragged(MouseEvent e) {
         shape.setX2(e.getX());
         shape.setY2(e.getY());
         repaint();
     }
 
+    public void changesList() {
+        for(int i = 0; i < changes.size(); i++) {
+            System.out.print(changes.get(i) + " ");
+        }
+        System.out.println();
+    }
+    
+    public void shapeList() {
+        for(int i = 0; i < shapesList.size(); i++) {
+            System.out.print(shapesList.get(i).toString() + " ");
+        }
+        System.out.println();
+    }
 }
