@@ -12,6 +12,8 @@ import java.awt.Graphics;
  *
  * @author jeremye
  */
+
+//this is the shape interface for the vasrious methods
 public interface shapeInterface {
     public void setColor(Color c);
     public Color getColor();

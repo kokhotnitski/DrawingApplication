@@ -19,6 +19,7 @@ import javax.swing.JPanel;
  *
  * @author jeremye
  */
+//this is the draw shape component panel
 public class PaintPanel extends JPanel {
 
     private final ArrayList shapesList = new ArrayList();
@@ -44,13 +45,16 @@ public class PaintPanel extends JPanel {
         statusTab = new JLabel("0, 0");
     }
 
+    //this is the mouse event listener override methods
     private class MouseHandler implements MouseListener, MouseMotionListener {
 
+        //this is the starting point where the shape start to draw
         @Override
         public void mousePressed(MouseEvent e) {
             panelMousedPressed(e);
         }
 
+        //this is the mouse event where the shape gets drawn
         @Override
         public void mouseDragged(MouseEvent e) {
             statusTab.setText(String.format("%d, %d", e.getX(), e.getY()));
@@ -58,6 +62,7 @@ public class PaintPanel extends JPanel {
             undoCounter = 0;
         }
 
+        //this is the event where the shape get selected for fill
         @Override
         public void mouseClicked(MouseEvent e) {
             shapesList.remove(shapesList.size() - 1);
@@ -116,6 +121,7 @@ public class PaintPanel extends JPanel {
 
     }
     
+    //this is where the shape method get called to fill the shape
     public void fillColor(Graphics g){
 
         selectedShape.setFillColor(fillColor);
@@ -124,6 +130,7 @@ public class PaintPanel extends JPanel {
         
     }
     
+    //this is where the method is called to erase a shape
     public void eraseShape() {
         if(isSelectd){
             eraseShapesList.add(selectedShape);
@@ -137,6 +144,7 @@ public class PaintPanel extends JPanel {
         }
     }
     
+    //this is the method called to redo you work shapes
     public void redoShape() {
         if(undoChanges.size() > 0 && undoCounter > 0){
             undoCounter--;
@@ -162,6 +170,7 @@ public class PaintPanel extends JPanel {
         }            
     }
     
+    //this is the method called to undo you shape created
     public void undoShape() {
         if(changes.size() > 0){
             undoCounter++;
@@ -188,6 +197,7 @@ public class PaintPanel extends JPanel {
         }      
     }
     
+    //this is the method where the new shape gets drawn
     public void panelMousedPressed(MouseEvent e) {
 
         if (type.equals("Line")) {
@@ -209,6 +219,7 @@ public class PaintPanel extends JPanel {
         changesList();
     }
 
+    //this is where the shape is drawn and filled on the panel vie the paint component method
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -232,6 +243,7 @@ public class PaintPanel extends JPanel {
         }
     }
     
+    //here the x and y co-ordinates here set for the new shape
     public void panelMouseDragged(MouseEvent e) {
         shape.setX2(e.getX());
         shape.setY2(e.getY());
@@ -244,6 +256,7 @@ public class PaintPanel extends JPanel {
         }
         System.out.println();
     }
+    
     
     public void shapeList() {
         for(int i = 0; i < shapesList.size(); i++) {

@@ -12,6 +12,8 @@ import java.awt.Graphics;
  *
  * @author jeremye
  */
+
+// this is the abstract class for the shape
 public abstract class Shape implements shapeInterface {
     
     private int x1;
@@ -40,6 +42,7 @@ public abstract class Shape implements shapeInterface {
         setFillColor(fillColor);
     }
     
+    //here we set the x and y values for the shapes
     public void setX1(int x){
         this.x1 = x;
     }
@@ -66,6 +69,7 @@ public abstract class Shape implements shapeInterface {
         return y2;
     }
     
+    //here we find the point for the selected shape
     @Override
     public boolean containsPoint(int x, int y) {
         
@@ -75,28 +79,33 @@ public abstract class Shape implements shapeInterface {
             return false;
     }
 
-    
+    //here we set the color for the line 
     @Override
     public void setColor(Color c){
         color = c;
     }
     
+    //here we set the color for the fill
     public void setFillColor(Color c){
         fillColor = c;
     }
     
+    //here we get the color for the line
     @Override
     public Color getColor(){
         return color;
     }
     
+    //here we get the color for the fill
     public Color getFillColor(){
         return fillColor;
     }
     
+    //abstract method to draw the shape or line
     @Override
     public abstract void draw(Graphics g, boolean newDrawing);
     
+    //abstracr method to fill the shape
     @Override
     public abstract void fill(Graphics g, boolean newShape);
 }

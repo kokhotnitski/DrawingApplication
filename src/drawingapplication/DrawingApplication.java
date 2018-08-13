@@ -37,6 +37,7 @@ public class DrawingApplication {
 
     public DrawingApplication() {
 
+        //here we create the menu bar which allows you to select what you would like to draw
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         drawingMenuItem = new javax.swing.JMenuItem();
@@ -48,12 +49,14 @@ public class DrawingApplication {
         fileMenu.setMnemonic('F');
         fileMenu.setText("File");
 
+        //here we add the draw shape menu item
         drawingMenuItem.setMnemonic('A');
         drawingMenuItem.setText("Drawing");
         drawingMenuItem.setToolTipText("Drawing");
         drawingMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
+                //this adds the draw component panel 
                 InitComponents components = new InitComponents();
                 application.setContentPane(components.createPanel(application.getSize()));
                 application.revalidate();
@@ -62,14 +65,15 @@ public class DrawingApplication {
         });
         fileMenu.add(drawingMenuItem);
 
+        //here we add the free drawing menu item
         freeDraeingMenuItem.setMnemonic('E');
         freeDraeingMenuItem.setText("free Drawing");
         freeDraeingMenuItem.setToolTipText("free Drawing");
         freeDraeingMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
+                //this add the free draw component panel
                 MouseDrawer mouseDrawer = new MouseDrawer();
-                //application.add(mouseDrawer, BorderLayout.CENTER);
                 application.setContentPane(mouseDrawer);
 
                 JLabel statusTab = mouseDrawer.getStatusTab();

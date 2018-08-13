@@ -12,6 +12,7 @@ import java.awt.Graphics;
  *
  * @author jeremye
  */
+//rectangle shape concrete class
 public class Rectangle extends Shape {
     
     Graphics gr;
@@ -21,6 +22,7 @@ public class Rectangle extends Shape {
         
     }
 
+    //here the actual shape gets drawn
     @Override
     public void draw(Graphics g, boolean newDrawing) {
         
@@ -40,6 +42,7 @@ public class Rectangle extends Shape {
         
     }
 
+    //here the shape get filled with the selected color
     @Override
     public void fill(Graphics g, boolean newShape) {
         int upperLeftX = Math.min(getX1(), getX2());

@@ -43,23 +43,26 @@ public class InitComponents extends JFrame {
         Container contentPane = getContentPane();
         contentPane.setLayout(null);
         
-                       
+        //here we create the panel to insert the buttons               
         Panel = new JPanel();
         Panel.setBounds(0, 0, frameSize.width, 40);
         Panel.setLayout(null);
         contentPane.add(Panel);
         
+        //here we create the paint panel to draw on
         painterPaintJPanel = new PaintPanel();
         painterPaintJPanel.setBounds(0, 55, frameSize.width, 
                 (frameSize.height - PANELSTATUSBORDER));
         painterPaintJPanel.setBackground(Color.WHITE);
         contentPane.add(painterPaintJPanel);
         
+        //the status label that shows you where the mouse is
         statusTabJLabel = painterPaintJPanel.getStatusTab();
         statusTabJLabel.setBounds(0 , 40, 
                 frameSize.width, 15);
         contentPane.add(statusTabJLabel);
         
+        //the combobox that we use to select the sahpe you want to draw
         shapJComboBox = new JComboBox(shapeTypes);
         shapJComboBox.setBounds(90, 2, 100, 24);
         Panel.add(shapJComboBox);
@@ -77,6 +80,7 @@ public class InitComponents extends JFrame {
         
         );
         
+        //the button to select the color of the line draw
         colorJButton = new JButton();
         colorJButton.setBounds(200, 2, 110, 24);
         colorJButton.setText("Choose Color");
@@ -99,6 +103,7 @@ public class InitComponents extends JFrame {
         
         );
         
+        //the button to select the color for the fill
         fillColorJButton = new JButton();
         fillColorJButton.setBounds(330, 2, 100, 24);
         fillColorJButton.setText("Fill Color");
@@ -117,7 +122,6 @@ public class InitComponents extends JFrame {
                     Graphics graphics = painterPaintJPanel.getGraphics();
                     painterPaintJPanel.fillColor(graphics);
                     painterPaintJPanel.update(graphics);
-                    //painterPaintJPanel.isSelectd = false;
                         
                 }
 
@@ -125,6 +129,7 @@ public class InitComponents extends JFrame {
         
         );
         
+        //the undo button 
         undoJButton = new JButton();
         undoJButton.setBounds(440, 2, 70, 24);
         undoJButton.setText("Undo");
@@ -142,6 +147,7 @@ public class InitComponents extends JFrame {
         
         );
         
+        //the redo button that
         redoJButton = new JButton();
         redoJButton.setBounds(510, 2, 70, 24);
         redoJButton.setText("Redo");
@@ -159,6 +165,7 @@ public class InitComponents extends JFrame {
         
         );
          
+        //the erase button
         eraserJButton = new JButton();
         eraserJButton.setBounds(580, 2, 70, 24);
         eraserJButton.setText("Erase");
