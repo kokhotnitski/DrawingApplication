@@ -19,28 +19,34 @@ public class Oval extends Shape{
     }
 
     @Override
-    public void draw(Graphics g) {
+    public void draw(Graphics g, boolean newDrawing) {
         
         int upperLeftX = Math.min(getX1(), getX2());
         int upperLeftY = Math.min(getY1(), getY2());
         int width = Math.abs(getX1() - getX2());
         int height = Math.abs(getY1() - getY2());
         
-        g.setColor(getColor());
+        if(newDrawing == true){
+            g.setColor(Color.BLACK);
+        }else{
+            g.setColor(getColor());
+        }
         g.drawOval(upperLeftX, upperLeftY, width, height);
                
         
     }
 
     @Override
-    public void fill(Graphics g) {
+    public void fill(Graphics g, boolean newShape) {
         int upperLeftX = Math.min(getX1(), getX2());
         int upperLeftY = Math.min(getY1(), getY2());
         int width = Math.abs(getX1() - getX2());
         int height = Math.abs(getY1() - getY2());
         
-        g.setColor(getFillColor());
-        g.fillOval(upperLeftX, upperLeftY, width, height);
+        if(newShape != true){
+            g.setColor(getFillColor());
+            g.fillOval(upperLeftX, upperLeftY, width, height);
+        }
     }
     
 }

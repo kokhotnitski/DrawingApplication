@@ -19,7 +19,7 @@ public class Line extends Shape {
     }
 
     @Override
-    public void draw(Graphics g) {
+    public void draw(Graphics g, boolean newDrawing) {
         
         g.setColor(getColor());
         g.drawLine(getX1(), getY1(), getX2(), getY2());
@@ -27,7 +27,7 @@ public class Line extends Shape {
     }
 
     @Override
-    public void fill(Graphics g) {
+    public void fill(Graphics g, boolean newShape) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

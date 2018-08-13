@@ -119,7 +119,7 @@ public class PaintPanel extends JPanel {
     public void fillColor(Graphics g){
 
         selectedShape.setFillColor(fillColor);
-        selectedShape.fill(g);
+        selectedShape.fill(g, false);
         repaint();
         
     }
@@ -195,6 +195,7 @@ public class PaintPanel extends JPanel {
         }
         
         if (type.equals("Rectangle")) {
+            fillColor = null;
             shape = new Rectangle(e.getX(), e.getY(), e.getX(), e.getY(), color, fillColor);
         }
         
@@ -217,11 +218,15 @@ public class PaintPanel extends JPanel {
 
         while (shapeIterator.hasNext()) {
             nextShape = (Shape) shapeIterator.next();
-            nextShape.draw(g);
             
-            
-            if(isSelectd == true){
-                nextShape.fill(g);
+            if(nextShape.getColor() != null){
+                nextShape.draw(g, false);
+            }else{
+                nextShape.draw(g, true);
+            }
+          
+            if(nextShape.getFillColor() != null){
+                nextShape.fill(g, false);
             }
             
         }

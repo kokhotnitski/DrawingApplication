@@ -15,7 +15,7 @@ import java.awt.Graphics;
 public interface shapeInterface {
     public void setColor(Color c);
     public Color getColor();
-    public abstract void draw(Graphics g);
-    public abstract void fill(Graphics g);
+    public abstract void draw(Graphics g, boolean newDrawing);
+    public abstract void fill(Graphics g, boolean newShape);
     public boolean containsPoint(int x, int y);
 }
