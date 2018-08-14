@@ -51,5 +51,10 @@ public class Oval extends Shape{
             g.fillOval(upperLeftX, upperLeftY, width, height);
         }
     }
+
+    @Override
+    public String getType() {
+        return ("Oval");
+    }
     
 }
