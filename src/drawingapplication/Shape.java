@@ -72,9 +72,14 @@ public abstract class Shape implements shapeInterface {
     //here we find the point for the selected shape
     @Override
     public boolean containsPoint(int x, int y) {
-        
-        if (x >= x1 && x < x1+x2 && y >= y1 && y < y1+y2)
-            return true;
+        if (x1 < x2 && y1 < y2)
+            return x >= x1 && x <= x2 && y >= y1 && y <= y2;
+        else if (x1 > x2 && y1 < y2)
+            return x <= x1 && x >= x2 && y >= y1 && y <= y2;
+        else if (x1 < x2 && y1 > y2)
+            return x >= x1 && x <= x2 && y <= y1 && y >= y2;
+        else if (x1 > x2 && y1 > y2)
+            return x <= x1 && x >= x2 && y <= y1 && y >= y2;
         else
             return false;
     }
@@ -100,6 +105,9 @@ public abstract class Shape implements shapeInterface {
     public Color getFillColor(){
         return fillColor;
     }
+    
+    //abstract method to return type
+    public abstract String getType();
     
     //abstract method to draw the shape or line
     @Override
