@@ -58,5 +58,10 @@ public class Rectangle extends Shape {
         
         
     }
+
+    @Override
+    public String getType() {
+        return ("Rectangle");
+    }
     
 }
