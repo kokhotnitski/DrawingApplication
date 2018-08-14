@@ -25,13 +25,13 @@ public class InitComponents extends JFrame {
     private JButton fillColorJButton;
     private JButton undoJButton;
     private JButton redoJButton;
+    private JButton eraserJButton;
+    private JButton copyJButton;
     private PaintPanel painterPaintJPanel;
     private JLabel statusTabJLabel;
-    private JButton eraserJButton;
+    
     
     private String[] shapeTypes = {"Line", "Rectangle", "Oval"};
-    private final int PANELSTATUSBORDER = 40;
-    private int eraserIndex = 0;
     
     public InitComponents(){
         
@@ -52,7 +52,7 @@ public class InitComponents extends JFrame {
         //here we create the paint panel to draw on
         painterPaintJPanel = new PaintPanel();
         painterPaintJPanel.setBounds(0, 55, frameSize.width, 
-                (frameSize.height - PANELSTATUSBORDER));
+                (frameSize.height - 40));
         painterPaintJPanel.setBackground(Color.WHITE);
         contentPane.add(painterPaintJPanel);
         
@@ -177,6 +177,23 @@ public class InitComponents extends JFrame {
 
                 public void actionPerformed(ActionEvent e) {
                     painterPaintJPanel.eraseShape();
+                }
+            }
+        
+        );
+        
+        //the copy button
+        copyJButton = new JButton();
+        copyJButton.setBounds(650, 2, 70, 24);
+        copyJButton.setText("Copy");
+        Panel.add(copyJButton);
+        
+        copyJButton.addActionListener(
+                
+            new ActionListener(){
+
+                public void actionPerformed(ActionEvent e) {
+                    painterPaintJPanel.copyShape();
                 }
             }
         
