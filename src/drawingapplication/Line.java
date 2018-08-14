@@ -32,5 +32,10 @@ public class Line extends Shape {
     public void fill(Graphics g, boolean newShape) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public String getType() {
+        return ("Line");
+    }
     
 }
